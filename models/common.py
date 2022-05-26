@@ -688,6 +688,13 @@ class Detections:
     def __str__(self):
         self.print()  # override print(results)
         return ''
+    def __getstate__(self):
+        print("I'm being pickled")
+        return self.__dict__
+    
+    def __setstate__(self, d):
+        print("I'm being unpickled with these values: " + repr(d))
+        self.__dict__ = d
 
 
 class Classify(nn.Module):
